@@ -10,17 +10,17 @@ class Food(Turtle):
         super().__init__()
         self.available_x_cor = None
         self.available_y_cor = None
-        self.exclude_snake_from_available_coordinates(snake_body)
+        # self.exclude_snake_from_available_coordinates(snake_body)
         self.put_food_on_screen()
 
     def put_food_on_screen(self):
         self.shape('square')
         self.penup()
         self.color('white')
-        self.goto(x=choice(self.available_x_cor), y=choice(self.available_y_cor))
+        self.goto(x=choice(CORS_X), y=choice(CORS_Y))
 
-    def exclude_snake_from_available_coordinates(self, snake_body):
-        for segment in snake_body:
-            x, y = segment.position()
-            self.available_x_cor = [cor for cor in CORS_X if cor != x]
-            self.available_y_cor = [cor for cor in CORS_Y if cor != y]
+    # def exclude_snake_from_available_coordinates(self, snake_body):
+    #     for segment in snake_body:
+    #         x, y = segment.position()
+    #         self.available_x_cor = [cor for cor in CORS_X if cor != x]
+    #         self.available_y_cor = [cor for cor in CORS_Y if cor != y]
