@@ -13,17 +13,16 @@ screen.tracer(0)
 
 walls_drawer = WallsDrawer()
 
-
+display = Display()
 def game():
-    score_counter = 0
-    display = Display()
+
     snake = Snake()
     screen.listen()
     keys_to_listen = ['Up', 'Down', 'Left', 'Right']
     for key in keys_to_listen:
         screen.onkey(lambda key_event=key: snake.turn(snake.head.heading(), key_event), key)
     food_obj = Food(snake.body)
-    display.display_score(score_counter)
+    display.display_score()
     while True:
         tail_x, tail_y = snake.body[-1].position()
         food = food_obj
@@ -38,8 +37,8 @@ def game():
         x_food, y_food = food.position()
         if round(x_head) == round(x_food) and round(y_head) == round(y_food):
             snake.eat_food(food=food, snake_end=(tail_x, tail_y))
-            score_counter += 1
-            display.display_score(score_counter)
+            display.score += 1
+            display.display_score()
             food_obj = Food(snake.body)
         screen.update()
         time.sleep(0.15)
